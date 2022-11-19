@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -79,7 +78,7 @@ public class ShipmentControllerTest {
     public void testCustomerHistory() throws Exception {
         String email="tolaabbey00@gmail.com";
         ResultActions actions = mockMvc.perform(
-                get("api/v1/history?email="+email)
+                get("/api/v1/history?email="+email)
         );
         actions.andExpect(status().isOk());
         String expJson=actions.andReturn().getResponse().getContentAsString();
