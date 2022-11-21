@@ -31,11 +31,6 @@ jobs:
         with:
             java-version: 19
 
-      - name: Setup Maven
-        uses: actions/setup-maven@v4.4
-        with:
-          maven-version: 3.8.2
-
       - name: Run Tests
         run: |
           mvn test
