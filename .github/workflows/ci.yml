@@ -5,36 +5,37 @@ on:
       - main
       - master
 jobs:
-  runs-on: ubuntu-latest
-  services:
-    mysql_db:
-      image: mysql:5.7
-      env:
-        MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        MYSQL_ROOT_PASSWORD:
-        MYSQL_USER: test_user
-        MYSQL_PASSWORD: password
-        MYSQL_DATABASE: shipments_test
-        ENVIRONMENT: cicd
-      ports:
-        - 3306:3306
-          # needed because the mysql container does not provide a healthcheck
-      options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql_db:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD:
+          MYSQL_USER: test_user
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: shipments_test
+          ENVIRONMENT: cicd
+        ports:
+          - 3306:3306
+            # needed because the mysql container does not provide a healthcheck
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
 
-  steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-          java-version: 19
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+            java-version: 19
 
-    - name: Setup Maven
-      uses: actions/setup-maven@v4.4
-      with:
-        maven-version: 3.8.2
+      - name: Setup Maven
+        uses: actions/setup-maven@v4.4
+        with:
+          maven-version: 3.8.2
 
-    - name: Run Tests
-      run: |
-        mvn test
+      - name: Run Tests
+        run: |
+          mvn test
