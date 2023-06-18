@@ -2,17 +2,6 @@
 
 [Postman Docs](https://www.getpostman.com/collections/497742b6deae56e91248) <br />
 
-## Local Setup:
-Make sure docker is installed on the target machine
-* Clone Repository
-
-## Steps
-* RUN `make bi` to build the docker image
-* RUN `docker-compose up` to start the service and the accompanying mysql database
-
-## OR
-* RUN `make`
-
 ## API Docs
 ## API Documentation:
 * POST `/new` -> Creates a new shipment record with the following payload and returns a JWT Token for future authentication:
